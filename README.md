@@ -51,3 +51,13 @@ Our study encountered several limitations that impacted the accuracy and reliabi
 We believe we have accomplished what we searched out to do from the beginning of the project. Obviously our work was not perfect, but we did the best we could. We found that year, kilometers driven, fuel type, seller type, transmission, owner, mileage, engine, max power, and seats have great influence on the final selling price of the car. While some have minimal influence, they all are a factor in the macro aspect. We are not sure how the dataset was collected, but if the dataset was true for example, it does make sense that these variables matter to people. While not everyone is a car enthusiast or an expert, they still care about the specifications of the car.
 
 One thing we would like to note is that our experiment was heavily limited by our knowledge of python. For example, our dataset contained numerous outliers, which can be seen in the graph to the right as it shows a box plot of the selling price. While having outliers is not necessarily a bad thing, having numerous outliers can negatively impact the algorithm. We were aware of multiple outliers in multiple columns, we did not know how to address them. We do not have much experience with algorithms, thus we were heavily limited on what actions we could take. As a result, for our future work, we would like to gain a better understanding of how to find outliers and how to properly remove them.
+
+## How to install and run 
+1. Download the "SS_Code.ipynb" and "Car_Details.csv" file
+2. You can run it on Google Colab or Jupyter Notebook
+    * If you want to use Google Colab
+        * Upload both files to a Google folder and open the .ipynb file
+        * It should immediately run the code, if not, upload the .csv file to the file icon to the left, and run each segment from top to bottom
+    * If you want to use Jupyter Notebook
+        * Make a folder, then upload both files to the folder
+        * Open the .ipynb file and if everything hasn't been already called, run each segment individually from top to bottom
