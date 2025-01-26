@@ -32,23 +32,16 @@ Lastly, the year versus selling price graph shows that newer cars sell for a hig
 
 ![Year vs. Kilometers Driven](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure4.png)
 
-Accuracy: Correctly classified out of total instances <br/>
-Precision: True positive predictions out of all positive predictions <br/>
-Sensitivity: Proportion of true positives predictions out of all positives <br/>
-F1 Score: Average of precision and recall
+After running the algorithm, we were able to run the Mean Absolute Error (MAE), Mean Squared Error (MSE), and 𝑅2 score. Firstly, MAE is the average size of the incorrect predictions in the total predictions, which is 270,259 for valid and 267,826 for test. The selling price ranges from $29,999 to $1,000,000, which means the predictions are off by around 270,000 from the actual selling price on average. Similarly, MSE measures the average of the squares of the errors, thus if the errors are large, the measurement will be exponentially larger. For valid, we got 219,820,858,711 and for test, we received 219,919,915,564. Lastly, the R squared score ranges from 0 to 1 and it measures how well the regression line fits the actual data. We received a score of 68% for the valid data and 66% for the testing data. This tells us that our experiment explains the majority of the variance but there is still room for improvement.
 
-![Results](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure5.png)
+![Results](https://github.com/sauthh/predicting-vehicle-pricing/blob/a3ec09f2a1cdb43c8ba78eaf1a72ba7f13c0b104/Figures/figure5.png)
+
+Next, we graphed the predicted versus selling price with a line of best fit. Majority of the data is congregated around the bottom left portion of the graph and as the price increases, it slowly starts to drift away from the line.
 
 ![Actual vs. Predicted Values](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure6.png)
 
 ## Discussion
 
-* Less kilometers driven sold for higher, fewer owners the better, new cars sell for more
-* Dataset contained large amounts of outliers, which throws off the algorithm and may cause some inaccuracy
-* Engine, fuel, max_power, etc. may matter less to how much cars sell for as the caused less correlation in price
+We believe we have accomplished what we searched out to do from the beginning of the project. Obviously our work was not perfect, but we did the best we could. We found that year, kilometers driven, fuel type, seller type, transmission, owner, mileage, engine, max power, and seats have great influence on the final selling price of the car. While some have minimal influence, they all are a factor in the macro aspect. We are not sure how the dataset was collected, but if the dataset was true for example, it does make sense that these variables matter to people. While not everyone is a car enthusiast or an expert, they still care about the specifications of the car.
 
-## Limitation
-* Varying degree of experience with coding and algorithm
-* Didn’t know how to perform certain actions ie. (remove outliers)
-* Narrow focus on Linear regression, overlooking nonlinear relationships, this could negatively impact results as we only used one methodology
-* Future work would explore more algorithms
+One thing we would like to note is that our experiment was heavily limited by our knowledge of python. For example, our dataset contained numerous outliers, which can be seen in the graph to the right as it shows a box plot of the selling price. While having outliers is not necessarily a bad thing, having numerous outliers can negatively impact the algorithm. We were aware of multiple outliers in multiple columns, we did not know how to address them. We do not have much experience with algorithms, thus we were heavily limited on what actions we could take. As a result, for our future work, we would like to gain a better understanding of how to find outliers and how to properly remove them.
