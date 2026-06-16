@@ -4,7 +4,7 @@ Collaborative machine learning project applying linear regression to predict sec
 
 ## Business Question
 
-What factors most strong predict the optimal selling price of a second-hand vehicle?
+What factors most strongly predict the optimal selling price of a second-hand vehicle?
 
 ## Dataset
 
@@ -34,11 +34,13 @@ The model explains 68% of variance in selling prices. Predictions are most accur
 
 ![Actual vs. Predicted Values](Figures/figure6.png)
 
+The selling price distribution shows significant right skew with numerous higher value outliers, which likely impacted model accuracy.
+
 ![Box and Whisker Plot](Figures/figure7.png)
 
 ## Methodology
 - Preprocessed data by removing rows with missing values and encoding categorical variables numerically
-- Removed irrelevant features (name, torque) and set selling_price as target variables
+- Removed irrelevant features (name, torque) and set selling_price as target variable
 - Split data 70/15/15 into training, validation, and test sets
 - Applied linear regression to establish relationships between vehicle attributes and selling price
 
@@ -48,9 +50,9 @@ The model explains 68% of variance in selling prices. Predictions are most accur
 - Newer cars and lower mileage vehicles consistently commanded higher prices
 
 ## Limitations
-- Deleting missing rows may have introducted sampling bias
-- Linear regression assumes linear relationships hich may not capture full market dynamics
-- Outliers were not removed wihich likely impacted model accuracy
+- Deleting missing rows may have introduced sampling bias
+- Linear regression assumes linear relationships which may not capture full market dynamics
+- Outliers were not removed which likely impacted model accuracy
 - Regional market factors and vehicle condition were not available in the dataset
 
 ## How to Run 
