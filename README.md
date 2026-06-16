@@ -1,63 +1,59 @@
 # Predicting Vehicle Pricing
 
-This project was a collaborative effort between four people, including me, for a class.
+Collaborative machine learning project applying linear regression to predict second-hand vehicle selling prices using a dataset of ~8,100 listings.
 
-## Problem Statement
+## Business Question
 
-The process of buying or selling second hand vehicles requires the person to be knowledgeable in the topic. However, due to limited knowledge about the second hand market, many individuals often undersell their cars, missing out on potential value. Therefore, it is crucial to inform people about the factors, so they can discern the optimal selling price before they sell or purchase a car.
+What factors most strong predict the optimal selling price of a second-hand vehicle?
 
 ## Dataset
 
-Our dataset was sourced from Kaggle like many others and it was one of multiple datasets within the downloaded zip folder; however, we chose the file with the most data points. It contains 8,128 unique rows and 13 columns: name, year, selling_price, km_driven, fuel, seller_type, transmission, owner, mileage, engine, max_power, torque, and seats. Additionally, there are 9 objects, 3 integers, and 1 float column. As the image below shows, some rows have null values, also known as missing values.
+8,128 vehicle listings sourced from Kaggle with 13 features including name, year, selling_price, km_driven, fuel, seller_type, transmission, owner, mileage, engine, max_power, torque, and seats.
 
 ![Data Columns](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure1.png)
 
-## Methodology
+## Exploratory Data Analysis
 
-The source we downloaded from contained multiple datasets; however, we decided to use the one with the most amount of data fields. The dataset had numerous missing values and improper fields, which left us with filling in the missing values or deleting them. We chose to delete the rows with missing values, as it was easier for us. Then, we started converting data objects into integers. For example, for seller type, Individual was converted to 1, Dealer to 2, and Trustmark Dealer to 3. For fuel, Diesel was turned to 1, Petrol to 2, LPG (Liquefied Petroleum Gas), and CNG (Compressed Natural Gas) as 4. For transmission, Manual was turned to 1 and Automatic was turned to 2. Lastly, for owner, First Owner was changed to 1, Second Owner to 2, Third Owner to 3, Fourth & Above Owner to 4, and Test Drive Car to 5. Next, columns such as mileage, engine, and max_power contained improper data, so the unnecessary text after the integers were removed such as kmpl, km/kg, CC, and bhp. Afterward, all the previously mentioned columns were converted to integers or floats. Next, we took 70% of the data as training, 15% as testing, and 15% for validation. We chose to run a linear regression algorithm because it establishes a relationship between predictor values (such as year, km_driven, mileage, etc.) and the target variable. Before we ran the linear regression algorithm, we removed name and torque from fields as we believed them to be unnecessary to our testing and set the target variable as selling price. Then we ran the linear regression algorithm, graphed the actual vs predicted values and ran some test metrics.
+Selling price shows an inverse relationship with kilometers driven as higher mileage vehicles sell for significantly less
+
+![Selling Price vs. Kilometers Driven](Figures/figure2.png)
+
+Vehicles with multiple previous owners also command lower prices, with first-owner cars selling at a premium.
+
+![Owner vs. Selling Price](Figures/figure3.png)
+
+Newer vehicles (post-2015) sell for substantially more, with 2020 models commanding the highest prices in the dataset.
+
+![Year vs. Selling Price](Figures/figure4.png)
+
+## Model Results
+
+![Results](Figures/figure5.png)
+
+The model explains 68% of variance in selling prices. Predictions are most accurate for lower-priced vehicles, with larger errors at higher price points.
+
+![Actual vs. Predicted Values](Figures/figure6.png)
+
+![Box and Whisker Plot](Figures/figure7.png)
+
+## Methodology
+- Preprocessed data by removing rows with missing values and encoding categorical variables numerically
+- Removed irrelevant features (name, torque) and set selling_price as target variables
+- Split data 70/15/15 into training, validation, and test sets
+- Applied linear regression to establish relationships between vehicle attributes and selling price
 
 ## Results
-
-Before we went deeper into our investigation, we conducted some basic operations on our data because we wanted to understand our dataset first.
-
-Firstly, the selling price versus kilometers driven graph shows a right skew. It shows an exponential decline graph that proves the more kilometers a car has, the lower the selling price.
-
-![Selling Price vs. Kilometers Driven](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure2.png)
-
-The owner versus kilometers driven shows that if a car has been passed through multiple owners, it also tends to sell for less. In the graph, 1.0 refers to the first owner, 2.0 as second owner, 3.0 as third owner, 4.0 as fourth and above owner, and 5.0 as test drive car.
-
-![Owner vs. Kilometers Driven](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure3.png)
-
-Lastly, the year versus selling price graph shows that newer cars sell for a higher price. Cars made in 2020 sell for vastly more compared to ones built in the late 90’s or 2000’s.
-
-![Year vs. Kilometers Driven](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure4.png)
-
-After running the algorithm, we were able to run the Mean Absolute Error (MAE), Mean Squared Error (MSE), and 𝑅2 score. Firstly, MAE is the average size of the incorrect predictions in the total predictions, which is 270,259 for valid and 267,826 for test. The selling price ranges from $29,999 to $1,000,000, which means the predictions are off by around 270,000 from the actual selling price on average. Similarly, MSE measures the average of the squares of the errors, thus if the errors are large, the measurement will be exponentially larger. For valid, we got 219,820,858,711 and for test, we received 219,919,915,564. Lastly, the R squared score ranges from 0 to 1 and it measures how well the regression line fits the actual data. We received a score of 68% for the valid data and 66% for the testing data. This tells us that our experiment explains the majority of the variance but there is still room for improvement.
-
-![Results](https://github.com/sauthh/predicting-vehicle-pricing/blob/a3ec09f2a1cdb43c8ba78eaf1a72ba7f13c0b104/Figures/figure5.png)
-
-Next, we graphed the predicted versus selling price with a line of best fit. Majority of the data is congregated around the bottom left portion of the graph and as the price increases, it slowly starts to drift away from the line.
-
-![Actual vs. Predicted Values](https://github.com/sauthh/predicting-vehicle-pricing/blob/20293977fc814973a71a17df42474f98cc467726/Figures/figure6.png)
+- R² Score: 68% (validation), 66% (test)
+- Year and Kilometers driven identified as strongest price determinants
+- Newer cars and lower mileage vehicles consistently commanded higher prices
 
 ## Limitations
+- Deleting missing rows may have introducted sampling bias
+- Linear regression assumes linear relationships hich may not capture full market dynamics
+- Outliers were not removed wihich likely impacted model accuracy
+- Regional market factors and vehicle condition were not available in the dataset
 
-Our study encountered several limitations that impacted the accuracy and reliability of our findings. One major issue was the quality and completeness of the dataset, which contained numerous missing values and improper fields. Our approach of deleting rows with missing values could have introduced bias and reduced the dataset's representativeness. Additionally, converting categorical data into numerical values for the linear regression model might have oversimplified complex relationships. The linear regression algorithm assumes a linear relationship between variables, which might not capture the true dynamics of the second-hand car market. The presence of outliers, which we lacked the expertise to handle effectively, further skewed our results. Furthermore, our study was constrained by our technical skills and familiarity with Python and machine learning algorithms. We faced challenges in advanced data processing, algorithm tuning, and model evaluation, highlighting the need for further training. Additionally, our analysis was limited to the variables available in the dataset, omitting potentially significant factors like car condition and regional market trends. The moderate R-squared scores of our model indicate that a significant portion of the variance in selling prices remains unexplained. To improve future research, it is essential to address these limitations by incorporating more comprehensive datasets, utilizing more sophisticated modeling techniques, and enhancing our technical proficiency.
-
-![Box and Whisker Plot](https://github.com/sauthh/predicting-vehicle-pricing/blob/48e4c63e148d3c6bc852f95dd4333f056723ffe4/Figures/figure7.png)
-
-## Discussion
-
-We believe we have accomplished what we searched out to do from the beginning of the project. Obviously our work was not perfect, but we did the best we could. We found that year, kilometers driven, fuel type, seller type, transmission, owner, mileage, engine, max power, and seats have great influence on the final selling price of the car. While some have minimal influence, they all are a factor in the macro aspect. We are not sure how the dataset was collected, but if the dataset was true for example, it does make sense that these variables matter to people. While not everyone is a car enthusiast or an expert, they still care about the specifications of the car.
-
-One thing we would like to note is that our experiment was heavily limited by our knowledge of python. For example, our dataset contained numerous outliers, which can be seen in the graph to the right as it shows a box plot of the selling price. While having outliers is not necessarily a bad thing, having numerous outliers can negatively impact the algorithm. We were aware of multiple outliers in multiple columns, we did not know how to address them. We do not have much experience with algorithms, thus we were heavily limited on what actions we could take. As a result, for our future work, we would like to gain a better understanding of how to find outliers and how to properly remove them.
-
-## How to install and run 
-1. Download the "SS_Code.ipynb" and "Car_Details.csv" file
-2. You can run it on Google Colab or Jupyter Notebook
-    * If you want to use Google Colab
-        * Upload both files to a Google folder and open the .ipynb file
-        * It should immediately run the code, if not, upload the .csv file to the file icon to the left, and run each segment from top to bottom
-    * If you want to use Jupyter Notebook
-        * Make a folder, then upload both files to the folder
-        * Open the .ipynb file and if everything hasn't been already called, run each segment individually from top to bottom
+## How to Run 
+1. Download `SS_Code.ipynb` and `Car_Details.csv` file
+2. Open in Jupyter Notebook or Google Colab
+3. Run cells sequentially from top to bottom
